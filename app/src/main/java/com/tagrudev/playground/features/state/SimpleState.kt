@@ -2,6 +2,8 @@ package com.tagrudev.playground.features.state
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -11,7 +13,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 
 @Composable
-fun StateWithViewModel(simpleViewModel: SimpleViewModel) {
+fun StateWithViewModel(simpleViewModel: SimpleViewModel = SimpleViewModel()) {
+  Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.SpaceBetween) {
+    LazyColumn {
+      items(simpleViewModel.names) { name ->
+        Text(name)
+      }
+    }
+
+    Button(onClick = { simpleViewModel.addName("Alex") }) {
+      Text("Add Alex")
+    }
+  }
 }
 
 /*
